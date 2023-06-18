@@ -17,6 +17,4 @@ engine = create_engine(url_object)
 metadata = MetaData()
 Base = declarative_base(metadata=metadata)
 
-Base.metadata.create_all(engine)
-
 Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)

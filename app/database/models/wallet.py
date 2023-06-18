@@ -8,6 +8,7 @@ from app.database.database import Base
 
 class Wallet(Base):
     __tablename__ = "wallets"
+    __table_args__ = {'extend_existing': True}
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     number: Mapped[str] = mapped_column(String(16), unique=True, nullable=False)

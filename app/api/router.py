@@ -12,11 +12,12 @@ from .schemas import UserCreate, WalletCreate, WalletDB, WalletNumberType, Walle
 from .utils import validation_user_id, validation_wallet_number, email_validation_if_exists, \
     wallet_receiver_validation, validation_transfer_amount, validation_operation_types, validation_date_time
 
-from app.database import UserController, WalletController, LogController
+# from app.database import UserController, WalletController, LogController
 
 from fastapi import HTTPException
 
 from app.currency_api import Controller
+from ..database.controllers import UserController, WalletController, LogController
 from ..database.database import Session
 
 

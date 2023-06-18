@@ -9,6 +9,8 @@ Faker==18.10.1
 fastapi==0.97.0
 greenlet==2.0.2
 h11==0.14.0
+httpcore==0.17.2
+httpx==0.24.1
 idna==3.4
 psycopg2==2.9.6
 pydantic==1.10.9
