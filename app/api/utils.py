@@ -34,7 +34,7 @@ def email_validation_if_exists(email: EmailStr, db: Session):
     if db.query(User).filter_by(email=email).first() is not None:
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-            detail="try entering a different email",
+            detail="Try entering a different email",
             headers={"header": "email already exists"}
         )
 

@@ -12,8 +12,6 @@ from .schemas import UserCreate, WalletCreate, WalletDB, WalletNumberType, Walle
 from .utils import validation_user_id, validation_wallet_number, email_validation_if_exists, \
     wallet_receiver_validation, validation_transfer_amount, validation_operation_types, validation_date_time
 
-# from app.database import UserController, WalletController, LogController
-
 from fastapi import HTTPException
 
 from app.currency_api import Controller
@@ -30,7 +28,15 @@ router = APIRouter(
 @router.post("/", response_model=UserDB, status_code=201)
 def create_user(new_user: UserCreate = Body(example=USER_CREATE_EXAMPLE), db: Session = Depends(get_db)):
     if validate_email(new_user.email) is False:
-         raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail="email is not valid")
+         raise HTTPException(
+             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+             detail="Email is not valid",
+             headers={"msg": "Email is not valid"}
+         )
+    if db is None:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Database session is not available"
+        )
     email_validation_if_exists(new_user.email, db)
     uc = UserController(db)
     return uc.create_userdb_from_user(new_user)

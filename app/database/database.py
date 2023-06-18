@@ -18,3 +18,4 @@ metadata = MetaData()
 Base = declarative_base(metadata=metadata)
 
 Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base.metadata.create_all(engine)

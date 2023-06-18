@@ -7,7 +7,7 @@ from app.database.database import Base
 
 
 class TransferLog(Base):
-    __tablename__ = "wallets"
+    __tablename__ = "transferlog"
     __table_args__ = {'extend_existing': True}
 
     transfer_uid: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
