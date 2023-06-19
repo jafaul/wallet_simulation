@@ -6,9 +6,9 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
-
-ENV PYTHONPATH=/app
+#
+#ENV PYTHONPATH=/app
 #STOPSIGNAL SIGTERM
-EXPOSE 8000/tcp
+#EXPOSE 8000/tcp
 
 CMD ["python3", "main.py"]

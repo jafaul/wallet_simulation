@@ -8,47 +8,52 @@ services:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
-#    volumes:
-#      - ./data:/var/lib/postgresql/data
     ports:
       - "${DB_PORT}:${DB_PORT}"
-  api:
+  web:
     container_name: web_start
     build:
-      context: ./
-#      target: production
-#    image: quotes-api
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:app/
+    environment:
+          DB_HOST: connect
+          DB_PORT: ${DB_PORT}
+          DB_USER: ${DB_USERNAME}
+          DB_PASSWORD: ${DB_PASSWORD}
+          DB_NAME: ${DB_NAME}
+    ports:
+      - "3000:3000"
     depends_on:
       - connect
-    ports:
-      - "8000:8000"
-    environment:
-#      NODE_ENV: production
-      DB_HOST: localhost
-      DB_PORT: ${DB_PORT}
-      DB_USER: ${DB_USERNAME}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_NAME: ${DB_NAME}
-    links:
-      - connect
-    volumes:
-      - ./main.py:/app/main.py
-#      - ./venv:/app/venv
-#      - ./:/src
-      - ./data:/var/lib/postgresql/data
-volumes:
-  db:
-    driver: local
-#    web:
+#    links:
+#      - connect
+
+
+#  api:
 #    container_name: web_start
-#    build: .
-#    volumes:
-#      - ./main:/app/main
-#      - /app/venv
+#    build:
+#      context: ./
+##      target: production
+##    image: quotes-api
+#    depends_on:
+#      - connect
 #    ports:
 #      - "8000:8000"
-##    depends_on:
-##      - connect
-#    command: >
-#      wait-for-it.sh connect:5432 -- sh -c "python3 main.py"
-#      sh -c "python3 main.py"
+#    environment:
+##      NODE_ENV: production
+#      DB_HOST: localhost
+#      DB_PORT: ${DB_PORT}
+#      DB_USER: ${DB_USERNAME}
+#      DB_PASSWORD: ${DB_PASSWORD}
+#      DB_NAME: ${DB_NAME}
+
+#    volumes:
+#      - ./main.py:/app/main.py
+##      - ./venv:/app/venv
+##      - ./:/src
+#      - ./data:/var/lib/postgresql/data
+#volumes:
+#  db:
+#    driver: local
