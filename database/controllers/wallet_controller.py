@@ -3,12 +3,13 @@ import random
 import uuid
 from typing import Optional
 
-from app.api.constants import WALLET_PREFIX
-from app.api.schemas import WalletNumberType, WalletCreate, AddMoney, TransferMoney
-from app.database.database import Session
-from app.database.models.transfer_log import TransferLog
-from app.database.models.wallet import Wallet
-from app.currency_api import Controller
+from sqlalchemy.orm import Session
+
+from api.constants import WALLET_PREFIX
+from api.schemas import WalletNumberType, WalletCreate, AddMoney, TransferMoney
+from database.models.transfer_log import TransferLog
+from database.models.wallet import Wallet
+from currency_api import Controller
 
 
 class WalletController:

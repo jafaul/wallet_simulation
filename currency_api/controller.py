@@ -1,6 +1,6 @@
 from typing import Optional
 
-from app.currency_api.client import Client
+from currency_api.client import Client
 from config import config
 
 

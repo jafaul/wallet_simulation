@@ -2,9 +2,9 @@ from sqlalchemy import URL
 from sqlalchemy.orm import sessionmaker
 from starlette.testclient import TestClient
 
-from app.api import get_db
+from api import get_db
 from config import config
-from app.database.database import Base, engine
+from database.database import Base, engine
 from main import app
 
 url_object = URL.create(

@@ -3,8 +3,10 @@ from typing import Annotated
 
 from email_validator import validate_email
 from fastapi import APIRouter, Body, Depends, Query
+from sqlalchemy.orm import Session
 from starlette import status
 
+from database import UserController, WalletController, LogController
 from .dependencies import get_db
 from .constants import USER_CREATE_EXAMPLE, DATETIME_FORMAT, EARLIEST_DATETIME
 from .schemas import UserCreate, WalletCreate, WalletDB, WalletNumberType, WalletBalanceType, UserDB, AddMoney, \
@@ -14,9 +16,7 @@ from .utils import validation_user_id, validation_wallet_number, email_validatio
 
 from fastapi import HTTPException
 
-from app.currency_api import Controller
-from ..database.controllers import UserController, WalletController, LogController
-from ..database.database import Session
+from currency_api import Controller
 
 
 router = APIRouter(

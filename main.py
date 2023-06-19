@@ -1,13 +1,11 @@
 import uvicorn
 from fastapi import FastAPI
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 
-from app.api import router
-from app.database.models import TransferLog, Wallet
+from api import router
+from database.models import TransferLog, Wallet
 
-from app.database.database import engine, Base, url_object
-from app.database.models.user import User
+from database.database import engine, Base
+from database.models.user import User
 from config import config
 
 app = FastAPI()

@@ -1,12 +1,11 @@
 import random
-import unittest
 
 from . import TestingSessionLocal
 from .db_to_test import client, override_get_db
 from faker import Faker
 
 from .constants import TEST_NAME, TEST_SURNAME, TEST_USER_ID_WITHOUT_WALLETS, TEST_USER_ID
-from ..database import User, Wallet
+from database import User, Wallet
 # edit test's data to be themselves
 
 

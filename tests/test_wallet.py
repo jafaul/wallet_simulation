@@ -4,11 +4,11 @@ from datetime import datetime
 from .constants import TEST_USER_ID, TEST_INVALID_WALLET_NUMBER, TEST_WALLET_NUMBER, TEST_WALLET_NUMBER_RECEIVER, \
     TEST_DATA_TIME_FROM, TEST_DATA_TIME_TO, TEST_INVALID_DATA_TIME
 
-from app.database import Wallet, TransferLog
-from app.tests import TestingSessionLocal
+from database import Wallet, TransferLog
+from tests import TestingSessionLocal
 from .db_to_test import client, override_get_db
 from .test_user import TestUser
-from ..api.constants import DATETIME_FORMAT
+from api import DATETIME_FORMAT
 
 nonexistent_user_id = TestUser.get_nonexistent_user_id()
 

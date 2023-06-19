@@ -2,14 +2,14 @@ from datetime import datetime
 
 from fastapi import HTTPException
 from pydantic import EmailStr
+from sqlalchemy.orm import Session
 from starlette import status
 
 from .schemas import WalletNumberType
-from app.database import controllers
+from database import controllers
 
-from ..database.database import Session
-from ..database.models import Wallet
-from ..database.models.user import User
+from database import Wallet
+from database import User
 
 
 def validation_user_id(user_id: int, db: Session):

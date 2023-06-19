@@ -1,11 +1,6 @@
 version: "3"
 
 services:
-  web:
-    build: .
-    volumes:
-      - .:/app
-      - /app/venv
   connect:
     container_name: db
     image: postgres:11.8
@@ -13,7 +8,47 @@ services:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
-    volumes:
-      - ./data:/var/lib/postgresql/data
+#    volumes:
+#      - ./data:/var/lib/postgresql/data
     ports:
       - "${DB_PORT}:${DB_PORT}"
+  api:
+    container_name: web_start
+    build:
+      context: ./
+#      target: production
+#    image: quotes-api
+    depends_on:
+      - connect
+    ports:
+      - "8000:8000"
+    environment:
+#      NODE_ENV: production
+      DB_HOST: localhost
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+    links:
+      - connect
+    volumes:
+      - ./main.py:/app/main.py
+#      - ./venv:/app/venv
+#      - ./:/src
+      - ./data:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local
+#    web:
+#    container_name: web_start
+#    build: .
+#    volumes:
+#      - ./main:/app/main
+#      - /app/venv
+#    ports:
+#      - "8000:8000"
+##    depends_on:
+##      - connect
+#    command: >
+#      wait-for-it.sh connect:5432 -- sh -c "python3 main.py"
+#      sh -c "python3 main.py"

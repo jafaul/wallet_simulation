@@ -3,8 +3,8 @@ import datetime
 from sqlalchemy import Integer, String, DateTime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from app.database.models import Wallet
-from app.database.database import Base
+from database.models.wallet import Wallet
+from database.database import Base
 
 
 class User(Base):

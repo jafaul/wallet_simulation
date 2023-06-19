@@ -7,14 +7,14 @@ from pydantic import BaseSettings
 
 class Settings(BaseSettings):
     BASE_DIR = os.path.dirname(os.path.abspath(__name__))
-    TEST_DIR = os.path.join(BASE_DIR, "app/tests")
+    TEST_DIR = os.path.join(BASE_DIR, "tests")
 
     DB_USERNAME: str = os.environ.get("DB_USERNAME", "")
     DB_PASSWORD: str = os.environ.get("DB_PASSWORD", "")
     HOST: str = os.environ.get("HOST", "localhost")
-    PORT: int = os.environ.get("PORT", 8000)
+    PORT: int = os.environ.get("PORT", 3000)
 
-    DB_HOST: str = os.environ.get("HOST", "localhost")
+    DB_HOST: str = os.environ.get("DB_HOST", "localhost")
     DB_PORT: int = os.environ.get("DB_PORT", 5432)
     DB_NAME: str = os.environ.get("DB_NAME", "online_wallet")
 

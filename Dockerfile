@@ -8,7 +8,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 ENV PYTHONPATH=/app
-STOPSIGNAL SIGTERM
+#STOPSIGNAL SIGTERM
 EXPOSE 8000/tcp
 
-#CMD ["uvicorn", "app.main:app", "--reload", "--host", "localhost", "--port", "8000"]
+CMD ["python3", "main.py"]

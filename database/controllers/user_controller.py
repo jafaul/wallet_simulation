@@ -1,15 +1,17 @@
-from ..database import Session
+from typing import List, Type
 
-from app.api.schemas import UserCreate, WalletNumberType, WalletBalanceType, CurrencyType
-from app.database.models.wallet import Wallet
-from app.database.models.user import User
+from sqlalchemy.orm import Session
+
+from api.schemas import UserCreate, WalletNumberType, WalletBalanceType, CurrencyType
+from database.models.wallet import Wallet
+from database.models.user import User
 
 
 class UserController:
     def __init__(self, db: Session):
         self.db = db
 
-    def get_user(self, user_id: int) -> User:
+    def get_user(self, user_id: int) -> User|None:
         return self.db.query(User).filter(User.id == user_id).first()
 
     def create_userdb_from_user(self, user: UserCreate) -> User:
@@ -27,5 +29,5 @@ class UserController:
     def get_currencies_by_user(self, user_id: int) -> list[CurrencyType]:
         return [currency[0] for currency in self.db.query(Wallet.currency).filter_by(owner_id=user_id)]
 
-    def get_users(self) -> list[User]:
+    def get_users(self) -> list[Type[User]]:
         return list(self.db.query(User).all())
