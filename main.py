@@ -16,15 +16,4 @@ if __name__ == '__main__':
     table_objects = [TransferLog.__table__, User.__table__, Wallet.__table__]
     Base.metadata.create_all(engine, tables=table_objects)
 
-    # engine = create_engine(url_object)
-    # Session = sessionmaker(bind=engine)
-    # db = Session()
-    #
-    # # Test the connection by executing a simple query
-    # users = db.query(User).all()
-    # print(users)
-    #
-    # # Close the session
-    # db.close()
-
     uvicorn.run("main:app", port=config.PORT, host=config.HOST, reload=True)

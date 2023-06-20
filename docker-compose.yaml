@@ -16,7 +16,7 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./:app/
+      - ./:/app
     environment:
           DB_HOST: connect
           DB_PORT: ${DB_PORT}
@@ -27,33 +27,4 @@ services:
       - "3000:3000"
     depends_on:
       - connect
-#    links:
-#      - connect
 
-
-#  api:
-#    container_name: web_start
-#    build:
-#      context: ./
-##      target: production
-##    image: quotes-api
-#    depends_on:
-#      - connect
-#    ports:
-#      - "8000:8000"
-#    environment:
-##      NODE_ENV: production
-#      DB_HOST: localhost
-#      DB_PORT: ${DB_PORT}
-#      DB_USER: ${DB_USERNAME}
-#      DB_PASSWORD: ${DB_PASSWORD}
-#      DB_NAME: ${DB_NAME}
-
-#    volumes:
-#      - ./main.py:/app/main.py
-##      - ./venv:/app/venv
-##      - ./:/src
-#      - ./data:/var/lib/postgresql/data
-#volumes:
-#  db:
-#    driver: local
